@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="The Ninja Gold game">
+        <title>Ninja Gold!</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/index.css' %}"
+    </head>
+    <body>
+        <header>
+            <label for="currentGold">Your Gold:</label>
+            <input type="text" id="currentGold" name="currentGold" value="{{request.session.currentGold}}" readonly>
+            <a href="/reset">
+                <button>Reset</button>
+            </a>
+        </header>
+        <main>
+            {% for loc in request.session.locations %}
+                <div class="location">
+                    <form action="/process-money" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="location" value="{{loc.name}}">
+                        <h3>{{loc.name}}</h3>
+                        {% if loc.gamble %}
+                            <p>(earns/takes {{loc.min}}-{{loc.max}} gold)</p>
+                        {% else %} 
+                            <p>(earns {{loc.min}}-{{loc.max}} gold)</p>
+                        {% endif %}
+                        <a href="/{{loc.name}}">
+                            <button>Find gold!</button>
+                        </a>
+                    </form>
+                </div>
+            {% endfor %}
+            <fieldset class="activities">
+                <legend>Activities</legend>
+                {% for activity, actstr in request.session.activities %}
+                    <p class="{{activity.gamble_result}}">{{actstr}}</p>
+                {% endfor %}
+            </fieldset>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,78 @@
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+header {
+    margin: 10px 10% 30px;
+}
+
+header * {
+    margin: auto 5px;
+}
+
+header input {
+    border: solid 1px black;
+    height: 25px;
+    text-align: right;
+    padding: 0 5px;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px 10%;
+}
+
+.location {
+    flex: 1;
+    display: inline-block;
+    border: solid 1px black;
+    margin: 25px 20px 0;
+    text-align: center;
+}
+
+h3 {
+    font-size: x-large;
+    margin: 10px auto;
+}
+
+h3:first-letter {
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+button {
+    margin: 10px auto 40px;
+    border-radius: 10px;
+    box-shadow: 5px 5px darkgray;
+    width: 150px;
+    height: 40px;
+}
+
+fieldset {
+    border: solid 1px black;
+    flex: 100%;
+    margin: 15px 20px 25px;
+    height: 250px;
+    overflow: auto;
+}
+
+legend {
+    margin-left: 10px;
+    padding: 10px;
+}
+
+p {
+    margin: 10px;
+    font-size: small;
+}
+
+.earned {
+    color: green;
+}
+
+.lost {
+    color: red;
+}
