@@ -1,8 +1,46 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="description" content="The Ninja Gold game">
+        <title>Ninja Gold!</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/gameover.css' %}"
     </head>
     <body>
-        <h1>Game Over</h1>
+	<div id="div-content">
+            <h1>Ninja Gold</h1>
+	    <div id="div-results">
+		{% if not request.session.won %}
+	                <h3>GAME OVER!!!  YOU LOSE!!!</h3>
+	                <p>You lost {{request.session.currentGold}} gold in {{request.session.turns}} turns.  Better luck next time!!!</p>
+		{% elif request.session.game_scenario == "amount" %}
+                    <h2>CONGRATULATIONS!!!  YOU WON!!!</h2>
+	            <p>You aquired {{request.session.currentGold}} gold in {{request.session.turns}} turns!!  Great job!!!</p>
+		{% else %}
+		    <h2>Game Over</h2>
+		    <p>After {{request.session.turns}} turns,
+		        <span>
+			    {% if request.session.currentGold > 0 %}
+		                you have aquired
+		    	    {% else %}
+		                you have lost
+		    	    {% endif %}
+		        </span>
+		        {{request.session.currentGold}} gold.
+		    </p>
+		{% endif %}
+	    </div>
+
+            <a href="/reset">
+                <button>Play again!!!</button>
+            </a>
+            <fieldset class="activities">
+                <legend>Activities</legend>
+                {% for activity, actstr in request.session.activities %}
+                    <p class="{{activity.gamble_result}}">{{actstr}}</p>
+                {% endfor %}
+            </fieldset>
+	</div>
     </body>
 </html>

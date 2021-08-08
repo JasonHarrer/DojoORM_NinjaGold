@@ -1,0 +1,64 @@
+* {
+    border:  0;
+    margin:  0;
+    padding: 0;
+}
+
+#div-content {
+    margin: 15px 20%;
+}
+
+
+#div-results {
+    border: solid 1px black;
+    margin-bottom: 20px;
+}
+
+
+h1, h2, h3, p {
+    text-align: center;
+    margin: 20px;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 5px 5px darkgray;
+    width: 150px;
+    height: 40px;
+}
+
+
+fieldset {
+    border: solid 1px black;
+    flex: 100%;
+    margin: 15px 0 25px;
+    height: 250px;
+    overflow: auto;
+}
+
+
+legend {
+    margin-left: 10px;
+    padding: 10px;
+}
+
+fieldset p {
+    text-align: left;
+}
+
+
+.earned {
+    color: green;
+}
+
+
+.lost {
+    color: red;
+}

@@ -30,23 +30,22 @@ def process_money(request):
     
     # For turns, increment the turn counter and check to see if end of game.
     print(f'Game Scenario: {request.session["game_scenario"]}')
-    request.session['turns'] += 1
     if ((request.session['game_scenario'] == 'turns') and
-        (request.session['turns'] > request.session['game_amount'])):
-        print('Turns')
+        (request.session['turns'] == request.session['game_amount'])):
+        request.session['won'] = True
         return redirect('/game-over')
+    request.session['turns'] += 1
 
     # For amounts, check if the win scenario met
     if request.session['game_scenario'] == 'amount':
-        print('Amount')
         if request.session['currentGold'] > request.session['game_amount']:
-            print('current gold > game amount')
+            request.session['won'] = True
             return redirect('/game-over')
 
     # Check if the user elected to allow loss and if they went below 0.
     print(request.session['game_allow_loss'])
     if request.session['currentGold'] < 0 and request.session['game_allow_loss'] == True:
-        print('you lose!')
+        request.session['won'] = False
         return redirect('/game-over')
     return redirect('/')
 
@@ -59,13 +58,14 @@ def start(request):
     request.session['game_scenario'] = ''
     request.session['game_amount'] = 0
     request.session['game_allow_loss'] = True
+    request.session['won'] = False
     return render(request, 'start.html')
 
 
 def process_game(request):
     request.session['game_scenario'] = request.POST['scenario']
     request.session['game_amount'] = int(request.POST['amount'])
-    request.session['game_allow_loss'] = True if request.POST['loss'] == 'on' else False
+    request.session['game_allow_loss'] = True if 'loss' in request.POST else False
     return redirect('/')
 
 
