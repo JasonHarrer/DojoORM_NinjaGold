@@ -4,10 +4,9 @@ from . import views
 
 urlpatterns = [
                 path('', views.index),
+                path('process-game', views.process_game),
                 path('process-money', views.process_money),
-                #path('farm', views.farm),
-                #path('cave', views.cave),
-                #path('house', views.house),
-                #path('casino', views.casino),
-                path('reset', views.reset)
+                path('reset', views.reset),
+                path('start', views.start),
+                path('game-over', views.game_over)
               ]

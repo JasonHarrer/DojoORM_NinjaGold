@@ -23,17 +23,11 @@ locations_dict = [
                    locations['house'].__dict__,
                    locations['casino'].__dict__
                  ]
-#locations = {
-#              'farm':   farm.__dict__,
-#              'cave':   cave.__dict__,
-#              'house':  house.__dict__,
-#              'casino': casino.__dict__
-#            }
-
 
 class GambleResult(Enum):
     WIN = 'earned'
     LOSE = 'lost'
+
 
 class Activity:
     def __init__(self, gamble_result, amount, location, dt):

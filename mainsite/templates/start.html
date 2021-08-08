@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="The Ninja Gold game - Enter game winning parameters">
+        <title>Ninja Gold!</title>
+        {% load static %}
+	<link rel="stylesheet" href="{% static 'css/start.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{% static 'js/start.js' %}"></script>
+    </head>
+    <body>
+	<div id="div-content">
+            <h1>Ninja Gold</h1>
+            <fieldset>
+                <legend>Enter Game Scenario Parameters</legend>
+	        <form action="/process-game" method="POST">
+	    	{% csrf_token %}
+                	<div>
+                	    <input type="radio" name="scenario" id="radio-amount" value="amount" checked>
+                	    <label for="scenario-amount">Amount<label>
+                	    <input type="radio" name="scenario" id="radio-turns"  value="turns">
+                	    <label for="scenario-turns">Turns</label>
+                	</div>
+                	<div>
+                	    <input type="number" name="amount" id="text-amount" value="100">
+                	    <label for="text-amount" id="label-text-amount"></label>
+                	</div>
+                	<div>
+                	    <input type="checkbox" name="loss" checked>
+			    <label id="label-loss" for="checkbox-loss">Game ends in a loss if you drop below 0 gold.</label>
+                	</div>
+			<button type="submit">Start game!</button>
+	        </form>
+            </fieldset>
+	</div>
+    </body>
+</html>
